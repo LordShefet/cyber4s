@@ -1,5 +1,5 @@
 
-
+let me = 'gohome';kkk
 const BOARD_SIZE = 8;
 const WHITE_PLAYER = 'white';
 const BLACK_PLAYER = 'black';
@@ -106,10 +106,10 @@ function onCellClick(event) {
 const rookPosibleMoves = () => {
   let rookRelMoves = [];
 for(let i = 0; i < BOARD_SIZE; i++){
-  rookRelMoves.push([i, 0], [0, i], [-i, 0], [0, -i])
+  rookRelMoves.push([i, 0], [0, i], [-i, 0], [0, -i]);
 
-  let rookAbsMoves = [];
-  if(i !==)
+  // let rookAbsMoves = [];
+  // if(i !==)
 }
 }
 
@@ -126,7 +126,7 @@ function createChessBoard() {
     const row = table.insertRow();
     for (let j = 0; j < BOARD_SIZE; j++) {
       const cell = row.insertCell();
-      cell.id = "cell-" + i.toString() + "_" + j.toString();
+  
       if ((i + j) % 2 === 0) {
         cell.className = 'light-box';
       } else {
