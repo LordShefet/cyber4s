@@ -12,7 +12,7 @@ const PAWN = "pawn";
 const KING = "king";
 
 let selectedCell;
-let pieces = [];
+//let pieces = [];
 let table;
 let boardData;
 
@@ -34,17 +34,17 @@ class Piece {
     } else if (this.type === KNIGHT) {
       // TODO: Get moves
     } else if (this.type === BISHOP) {
-      // TODO: Get moves
+      relativeMoves = this.getBishopRelativeMoves();
     } else if (this.type === KING) {
-      // TODO: Get moves
+      relativeMoves = this.getKingRelativeMoves();
     } else if (this.type === QUEEN) {
-      // TODO: Get moves
+      relativeMoves = this.getQueenRelativeMoves();
     } else {
       console.log("Unknown type", type)
     }
     console.log('relativeMoves', relativeMoves);
   
-    // Get absolute moves
+    
     let absoluteMoves = [];
     for (let relativeMove of relativeMoves) {
       const absoluteRow = this.row + relativeMove[0];
@@ -103,9 +103,41 @@ class Piece {
       result.push([-i, -i]);
       result.push([-i, i]);
       result.push([i, -i]);
+
+      return result;
     }
 
   }
+
+  getQueenRelativeMoves() {
+    let result = [];
+    for(let i = 1; i < 8; i++){
+      result.push([i, 0]);
+      result.push([-i, 0]);
+      result.push([0, i]);
+      result.push([0, -i]);
+      result.push([i, i]);
+      result.push([-i, -i]);
+      result.push([-i, i]);
+      result.push([i, -i]);
+
+      return result;
+  }
+}
+
+   getKnightRelativeMoves(){
+     let result = [];
+     result.push([2, 1]);
+     result.push([2, -1]);
+     result.push([-2, 1]);
+     result.push([-2, -1]);
+     result.push([1, 2]);
+     result.push([-1, 2]);
+     result.push([1, -2]);
+     result.push([-1, -2]);
+
+     return result;
+   }
 }
 
 
@@ -172,24 +204,30 @@ function onCellClick(event, row, col) {
 class BoardData {
   constructor(pieces) {
     this.piece = pieces;
-  
-    getPiece(row, col); {
-  
-    
-    
   }
+    
+  getPiece(row, col) {
+      for(const piece of this.pieces){
+        if(piece.row === row && piece.col === col){
+          return piece;
+        }
+      }
+    }
+  
+     
 }
-}
+
+
 
 
 function createChessBoard() {
-  const table1 = document.createElement('table');
-  document.body.appendChild(table1);
+  const table = document.createElement('table');
+  document.body.appendChild(table);
   for (let row = 0; row < BOARD_SIZE; row++) {
-    const row1 = table1.insertRow();
+    const rowElement = table.insertRow();
 
     for (let col = 0; col < BOARD_SIZE; col++) {
-      const cell = row1.insertCell();
+      const cell = rowElement.insertCell();
 
       if ((row + col) % 2 === 0) {
         cell.className = 'light-box';
