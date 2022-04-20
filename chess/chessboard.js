@@ -32,7 +32,7 @@ class Piece {
     } else if (this.type === ROOK) {
       relativeMoves = this.getRookRelativeMoves();
     } else if (this.type === KNIGHT) {
-      // TODO: Get moves
+      relativeMoves = this.getKnightRelativeMoves();
     } else if (this.type === BISHOP) {
       relativeMoves = this.getBishopRelativeMoves();
     } else if (this.type === KING) {
@@ -103,9 +103,9 @@ class Piece {
       result.push([-i, -i]);
       result.push([-i, i]);
       result.push([i, -i]);
-
-      return result;
     }
+      return result;
+    
 
   }
 
@@ -121,8 +121,9 @@ class Piece {
       result.push([-i, i]);
       result.push([i, -i]);
 
+    }
       return result;
-  }
+  
 }
 
    getKnightRelativeMoves(){
@@ -160,8 +161,8 @@ function addFirstRowPieces(result, row, player) {
   result.push(new Piece(row, 0, ROOK, player));
   result.push(new Piece(row, 1, KNIGHT, player));
   result.push(new Piece(row, 2, BISHOP, player));
-  result.push(new Piece(row, 3, KING, player));
-  result.push(new Piece(row, 4, QUEEN, player));
+  result.push(new Piece(row, 4, KING, player));
+  result.push(new Piece(row, 3, QUEEN, player));
   result.push(new Piece(row, 5, BISHOP, player));
   result.push(new Piece(row, 6, KNIGHT, player));
   result.push(new Piece(row, 7, ROOK, player));
@@ -174,12 +175,14 @@ function addImage(cell, player, name) {
 }
 
 function onCellClick(event, row, col) {
-  //remove soon
+  
   console.log('row', row);
   console.log('col', col);
  
-  for (let i = 0; i < BOARD_SIZE; i++) {
+ for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
+      
+      console.log(table);
       table.rows[i].cells[j].classList.remove('possible-move');
     }
   }
@@ -203,7 +206,7 @@ function onCellClick(event, row, col) {
 
 class BoardData {
   constructor(pieces) {
-    this.piece = pieces;
+    this.pieces = pieces;
   }
     
   getPiece(row, col) {
@@ -221,7 +224,8 @@ class BoardData {
 
 
 function createChessBoard() {
-  const table = document.createElement('table');
+  table = document.createElement('table');
+  
   document.body.appendChild(table);
   for (let row = 0; row < BOARD_SIZE; row++) {
     const rowElement = table.insertRow();
