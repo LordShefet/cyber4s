@@ -71,11 +71,14 @@ class Piece {
   }
 
   getPawnRelativeMoves() {
-    if (this.type == WHITE_PLAYER) {
-      return [[-1, 0]];
-    } else if ((this.type = BLACK_PLAYER)) {
-      return [[1, 0]];
+     let result = [];
+
+    if (this.player === WHITE_PLAYER) {
+      result.push([1, 0]);
+    } else if (this.player === BLACK_PLAYER) {
+      result.push([-1, 0]);
     }
+    return result;
   }
 
   getRookRelativeMoves() {
@@ -186,13 +189,12 @@ function addImage(cell, player, name) {
   cell.appendChild(image);
 }
 
-function onCellClick(event, row, col) {
+function onCellClick(event, row, col, player) {
   console.log("row", row);
   console.log("col", col);
-
+  console.log("player", player);
   for (let i = 0; i < BOARD_SIZE; i++) {
     for (let j = 0; j < BOARD_SIZE; j++) {
-      console.log(table);
       table.rows[i].cells[j].classList.remove("possible-move");
     }
   }
