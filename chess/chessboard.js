@@ -1,4 +1,4 @@
-//TODO : king and pawn moves.
+//TODO : pawn moves. css touch-ups
 
 const BOARD_SIZE = 8;
 const WHITE_PLAYER = "white";
@@ -12,7 +12,7 @@ const PAWN = "pawn";
 const KING = "king";
 
 let selectedCell;
-//let pieces = [];
+
 let table;
 let boardData;
 
@@ -25,7 +25,7 @@ class Piece {
   }
 
   getPossibleMoves() {
-    // Get relative moves
+    
     let relativeMoves;
     if (this.type === PAWN) {
       relativeMoves = this.getPawnRelativeMoves();
@@ -42,17 +42,17 @@ class Piece {
     } else {
       console.log("Unknown type", type);
     }
-    console.log("relativeMoves", relativeMoves);
-
+    //console.log("relativeMoves", relativeMoves);
+    //the comment above is for quick access to part of the relativeMoves function for bug fixes.
     let absoluteMoves = [];
     for (let relativeMove of relativeMoves) {
       const absoluteRow = this.row + relativeMove[0];
       const absoluteCol = this.col + relativeMove[1];
       absoluteMoves.push([absoluteRow, absoluteCol]);
     }
-    // console.log('absoluteMoves', absoluteMoves);
-
-    // Get filtered absolute moves
+    //console.log('absoluteMoves', absoluteMoves); 
+    //the comment above is for quick access to part of the relativeMoves function for bug fixes.
+    
     let filteredMoves = [];
     for (let absoluteMove of absoluteMoves) {
       const absoluteRow = absoluteMove[0];
@@ -92,12 +92,25 @@ class Piece {
   getKingRelativeMoves() {
     let result = [];
 
-    result.push([1, 0]);
-    result.push([0, 1]);
-    result.push([-1, 0]);
-    result.push([0, -1]);
-    result.push([1, 1]);
-    result.push([-1, -1]);
+    for(let i = -1; i < 1; i++){
+      if(i !== 0){
+      result.push([i, 0]);
+      result.push([-i, 0]);
+      result.push([0, i]);
+      result.push([0, -i]);
+      result.push([i, i]);
+      result.push([-i, -i]);
+      result.push([-i, i]);
+      result.push([i, -i]);
+    }
+  }
+    // result.push([(-1), (-1)]);
+    // result.push([1, 0]);
+    // result.push([0, 1]);
+    // result.push([-1, 0]);
+    // result.push([0, -1]);
+    // result.push([1, 1]);
+    
 
     return result;
   }
@@ -142,7 +155,7 @@ class Piece {
     return result;
   }
 }
-
+//places of pieces when the board starts
 function getInitialPieces() {
   let result = [];
 
@@ -196,7 +209,7 @@ function onCellClick(event, row, col) {
     selectedCell.classList.remove("selected");
   }
 
-  // Show selected cell
+  
   selectedCell = event.currentTarget;
   selectedCell.classList.add("selected");
 }
@@ -240,5 +253,5 @@ function createChessBoard() {
     addImage(cell, piece.player, piece.type);
   }
 }
-
+//start of the program.
 window.addEventListener("load", createChessBoard);
