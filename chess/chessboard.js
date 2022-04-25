@@ -194,7 +194,7 @@ function getInitialPieces() {
     result.push(new Piece(1, i, PAWN, WHITE_PLAYER));
     result.push(new Piece(6, i, PAWN, BLACK_PLAYER));
   }
-  result.push(new Piece(2, 4, PAWN, BLACK_PLAYER));
+  
   return result;
 }
 

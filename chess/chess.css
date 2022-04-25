@@ -4,14 +4,17 @@ body{
 
 .dark-box{
     background-color: rgb(67, 67, 67);
-    width: 68px;
-    height: 68px;
+    
 }
 
 .light-box{
     background-color: rgb(183, 183, 183);
-    width: 68px;
-    height:  68px;
+   
+}
+
+td {
+    width: 70px;
+    height: 70px;
 }
 
 table {
@@ -32,7 +35,7 @@ table {
 }
 
 .headline {
-    font-size: 70px;
+    font-size: 67px;
     font-family: 'My Soul', cursive; 
     display: flex;
     justify-content: center;
@@ -40,4 +43,10 @@ table {
     margin-bottom: 0%;
     margin-top: 10px;
     color: rgb(53, 53, 53);
+}
+
+img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
