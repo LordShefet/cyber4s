@@ -1,52 +1,59 @@
-body{
-    background-color: rgba(224, 224, 224, 0.866);
+body {
+  background-color: rgba(224, 224, 224, 0.866);
 }
 
-.dark-box{
-    background-color: rgb(67, 67, 67);
-    
+.dark-box {
+  background-color: rgb(67, 67, 67);
 }
 
-.light-box{
-    background-color: rgb(183, 183, 183);
-   
+.light-box {
+  background-color: rgb(183, 183, 183);
 }
 
 td {
-    width: 70px;
-    height: 70px;
+  width: 70px;
+  height: 70px;
 }
 
 table {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
+  width: 580px;
+ margin-left: 200px;
+  display:inline-flex
   
-
 }
 
 .selected {
-    background-color: rgb(52, 92, 98);
+  background-color: rgb(52, 92, 98);
 }
 
-.possible-move{
-    background-color: rgb(126, 155, 153);
+.possible-move {
+  background-color: rgb(126, 155, 153);
 }
 
 .headline {
-    font-size: 67px;
-    font-family: 'My Soul', cursive; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0%;
-    margin-top: 10px;
-    color: rgb(53, 53, 53);
+  font-size: 67px;
+  font-family: "My Soul", cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0%;
+  margin-top: 10px;
+  color: rgb(53, 53, 53);
 }
 
 img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.reset {
+  width: 100px;
+  height: 100px;
+display: inline-flex;
+margin-left: 40px;
+padding-right: 100px;
+text-align: center;
+align-self: center;
+}
+

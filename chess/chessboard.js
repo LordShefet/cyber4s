@@ -1,4 +1,7 @@
 //TODO :. css touch-ups
+
+
+
 const CHESS_BOARD_ID = "Noice";
 
 const BOARD_SIZE = 8;
@@ -183,6 +186,38 @@ class Piece {
     }
   }
 }
+
+class BoardData {
+  constructor(pieces) {
+    this.pieces = pieces;
+  }
+
+  getPiece(row, col) {
+    for (const piece of this.pieces) {
+      if (piece.row === row && piece.col === col) {
+        return piece;
+      }
+    }
+  }
+
+  isEmpty(row, col) {
+    return this.getPiece(row, col) === undefined;
+  }
+
+  isPlayer(row, col, player) {
+    const piece = this.getPiece(row, col);
+    return piece !== undefined && piece.player === player;
+  }
+
+  removePiece(row, col) {
+    for (let i = 0; i < this.pieces.length; i++) {
+      const piece = this.pieces[i];
+      if (piece.row === row && piece.col === col) {
+        this.pieces.splice(i, 1);
+      }
+    }
+  }
+}
 //places of pieces when the board starts
 function getInitialPieces() {
   let result = [];
@@ -272,37 +307,7 @@ function tryMove(piece, row, col , event) {
   return false;
 }
 
-class BoardData {
-  constructor(pieces) {
-    this.pieces = pieces;
-  }
 
-  getPiece(row, col) {
-    for (const piece of this.pieces) {
-      if (piece.row === row && piece.col === col) {
-        return piece;
-      }
-    }
-  }
-
-  isEmpty(row, col) {
-    return this.getPiece(row, col) === undefined;
-  }
-
-  isPlayer(row, col, player) {
-    const piece = this.getPiece(row, col);
-    return piece !== undefined && piece.player === player;
-  }
-
-  removePiece(row, col) {
-    for (let i = 0; i < this.pieces.length; i++) {
-      const piece = this.pieces[i];
-      if (piece.row === row && piece.col === col) {
-        this.pieces.splice(i, 1);
-      }
-    }
-  }
-}
 
 function initGame() {
   //start of a new game/onload of page.
@@ -317,6 +322,7 @@ function createChessBoard(boardData) {
   }
   table = document.createElement("table");
   table.id = CHESS_BOARD_ID;
+ 
   document.body.appendChild(table);
   for (let row = 0; row < BOARD_SIZE; row++) {
     const rowElement = table.insertRow();
@@ -338,6 +344,8 @@ function createChessBoard(boardData) {
     const cell = table.rows[piece.row].cells[piece.col];
     addImage(cell, piece.player, piece.type);
   }
+  
 }
 //start of the program.
 window.addEventListener("load", initGame(boardData));
+
