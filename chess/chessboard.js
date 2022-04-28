@@ -348,4 +348,3 @@ function createChessBoard(boardData) {
 }
 //start of the program.
 window.addEventListener("load", initGame(boardData));
-
