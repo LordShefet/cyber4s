@@ -1,1 +1,0 @@
-# wikipage good luck
